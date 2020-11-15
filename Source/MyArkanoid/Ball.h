@@ -19,8 +19,15 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		class UStaticMeshComponent* SM_Ball;
+
+	class AArkanoidGM* GameMode;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	bool bLaunched;
+	float Speed;
 };

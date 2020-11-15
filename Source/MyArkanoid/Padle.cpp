@@ -9,6 +9,20 @@ APadle::APadle()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	Tags.Add("Padle");
+
+	SM_Padle = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SM_Padle"));
+
+	RootComponent = SM_Padle;
+
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> FoundMesh(TEXT("/Game/Meshes/SM_Paddle.SM_Paddle"));
+	if (FoundMesh.Succeeded())
+		SM_Padle->SetStaticMesh(FoundMesh.Object);
+
+	static ConstructorHelpers::FObjectFinder<UMaterial> FoundMaterial(TEXT("/Game/Materials/M_Paddle.M_Paddle"));
+	if (FoundMaterial.Succeeded())
+		SM_Padle->SetMaterial(0, FoundMaterial.Object);
+
 }
 
 // Called when the game starts or when spawned
