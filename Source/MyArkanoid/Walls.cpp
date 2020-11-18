@@ -26,7 +26,7 @@ AWalls::AWalls()
 	if (FoundMaterial.Succeeded())
 		SM_Walls->SetMaterial(0, FoundMaterial.Object);
 
-
+	SM_Walls->SetCollisionProfileName(TEXT("BlockAllDynamic"));
 
 }
 

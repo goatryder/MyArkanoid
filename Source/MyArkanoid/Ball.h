@@ -24,10 +24,19 @@ protected:
 
 	class AArkanoidGM* GameMode;
 
+	UFUNCTION()
+		void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor,
+			UPrimitiveComponent* OtherComp,
+			FVector NormalImpulse, const FHitResult& Hit);
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	bool bLaunched;
-	float Speed;
+	float Speed = 200.f;
+
+	FVector Velocity = FVector(0.f, 0.f, 1.f);
+
+	FHitResult SweepResult = FHitResult();
 };

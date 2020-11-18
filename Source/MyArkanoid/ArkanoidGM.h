@@ -47,6 +47,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float BallSpeed = 200.f;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FVector BallVelocity = FVector(0.f, 0.f, 1.f);
+
 	void SpawnBall();
 
 };
