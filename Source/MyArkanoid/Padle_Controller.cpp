@@ -48,7 +48,6 @@ void APadle_Controller::BeginPlay()
 		PadleSpeed = GameMode->PadleSpeed;
 		PadleBoundLeft = GameMode->PadleBoundLeft;
 		PadleBoundRight = GameMode->PadleBoundRight;
-		Ball = GameMode->Ball;
 }
 
 void APadle_Controller::MoveHorizontal(float Val)
@@ -69,14 +68,15 @@ void APadle_Controller::MoveHorizontal(float Val)
 		Location.X = PadleBoundRight;
 	}
 
-	OwnedPadle->SetActorLocation(Location, true);
+	//OwnedPadle->SetActorLocation(Location, true);
+	OwnedPadle->SetActorLocation(Location, false);
 
 }
 
 void APadle_Controller::Launch()
 {
 
-	if (Ball)
-		Ball->bLaunched = true;
+	if (GameMode)
+		GameMode->Ball->bLaunched = true;
 
 }

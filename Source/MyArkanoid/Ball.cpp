@@ -72,8 +72,10 @@ void ABall::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor,
 
 	FVector ReflectedVelocity = -(Hit.Normal * FVector::DotProduct(Velocity, Hit.Normal) * 2 - Velocity);
 
-	UKismetSystemLibrary::DrawDebugLine(GetWorld(), Hit.Location, 200.f * Velocity + Hit.Location, FLinearColor::Green, 16.f);
-	UKismetSystemLibrary::DrawDebugLine(GetWorld(), Hit.Location, 200.f * ReflectedVelocity + Hit.Location, FLinearColor::Yellow, 16.f);
+	UKismetSystemLibrary::DrawDebugLine(GetWorld(), Hit.Location, 200.f * Velocity + Hit.Location, FLinearColor::Green, 1.f);
+	UKismetSystemLibrary::DrawDebugLine(GetWorld(), Hit.Location, 512.f * ReflectedVelocity + Hit.Location, FLinearColor::Yellow, 1.f);
+
+	ReflectedVelocity.Y = 0;
 
 	Velocity = ReflectedVelocity;
 

@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "BallBound.generated.h"
 
+
 UCLASS()
 class MYARKANOID_API ABallBound : public AActor
 {
@@ -18,6 +19,16 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		class UBoxComponent* Box_Collision;
+
+	UFUNCTION()
+		void OnBoxHit(UPrimitiveComponent* HitComponent, AActor* OtherActor,
+			UPrimitiveComponent* OtherComp,
+			FVector NormalImpulse, const FHitResult& Hit);
+	
+	class AArkanoidGM* GameMode;
 
 public:	
 	// Called every frame

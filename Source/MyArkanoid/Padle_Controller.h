@@ -25,7 +25,6 @@ class MYARKANOID_API APadle_Controller : public APlayerController
 
 protected:
 	class APadle* OwnedPadle;
-	class ABall* Ball;
 	class AArkanoidGM* GameMode;
 	
 	float PadleBoundLeft;

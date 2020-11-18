@@ -45,10 +45,11 @@ public:
 		ABall* Ball;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float BallSpeed = 2000.f;
+		float BallSpeed = 500.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		FVector BallVelocity = FVector(FMath::FRandRange(-15.f, 15.f), 0.f, FMath::FRandRange(15.f, 30.f));
+		//FVector BallVelocity = FVector(FMath::FRandRange(-15.f, 15.f), 0.f, FMath::FRandRange(15.f, 30.f));
+		FVector BallVelocity = FVector(1.f, 0.f, 1.f);
 
 	void SpawnBall();
 
