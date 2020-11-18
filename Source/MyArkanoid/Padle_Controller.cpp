@@ -69,7 +69,7 @@ void APadle_Controller::MoveHorizontal(float Val)
 		Location.X = PadleBoundRight;
 	}
 
-	OwnedPadle->SetActorLocation(Location);
+	OwnedPadle->SetActorLocation(Location, true);
 
 }
 

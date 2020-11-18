@@ -22,7 +22,7 @@ class MYARKANOID_API AArkanoidGM : public AGameMode
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float PadleSpeed = 100.f;
+		float PadleSpeed = 300.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float PadleBoundLeft = -140.f;
@@ -45,10 +45,10 @@ public:
 		ABall* Ball;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float BallSpeed = 200.f;
+		float BallSpeed = 2000.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		FVector BallVelocity = FVector(0.f, 0.f, 1.f);
+		FVector BallVelocity = FVector(FMath::FRandRange(-15.f, 15.f), 0.f, FMath::FRandRange(15.f, 30.f));
 
 	void SpawnBall();
 

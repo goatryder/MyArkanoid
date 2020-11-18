@@ -4,7 +4,6 @@
 #include "Ball.h"
 #include "Components/StaticMeshComponent.h"
 #include "ArkanoidGM.h"
-
 #include "Kismet/KismetSystemLibrary.h"
 
 // Sets default values
@@ -63,11 +62,6 @@ void ABall::Tick(float DeltaTime)
 
 		AddActorWorldOffset(Velocity * (Speed * DeltaTime), true, &SweepResult);
 
-		//UE_LOG(LogTemp, Warning, TEXT("Tick Impact Point %s"), *SweepResult.ImpactPoint.ToString());
-		//UE_LOG(LogTemp, Warning, TEXT("Tick Impact Normal %s"), *SweepResult.ImpactNormal.ToString());
-		//UE_LOG(LogTemp, Warning, TEXT("Tick Hit Location %s"), *SweepResult.Location.ToString());
-		//UE_LOG(LogTemp, Warning, TEXT("Tick Hit Normal %s"), *SweepResult.Normal.ToString());
-
 	}
 }
 
@@ -76,13 +70,11 @@ void ABall::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor,
 	FVector NormalImpulse, const FHitResult& Hit)
 {
 
-	//UE_LOG(LogTemp, Warning, TEXT("On Ball Hit Impact Point %s"), *Hit.ImpactPoint.ToString());
-	//UE_LOG(LogTemp, Warning, TEXT("On Ball Hit Impact Normal %s"), *Hit.ImpactNormal.ToString());
-	//UE_LOG(LogTemp, Warning, TEXT("On Ball Hit Location %s"), *Hit.Location.ToString());
-	//UE_LOG(LogTemp, Warning, TEXT("On Ball Hit Normal %s"), *Hit.Normal.ToString());
+	FVector ReflectedVelocity = -(Hit.Normal * FVector::DotProduct(Velocity, Hit.Normal) * 2 - Velocity);
 
-	// UKismetSystemLibrary::DrawDebugSphere(GetWorld(), Hit.ImpactPoint, 12.f, 12, FLinearColor::Green, 1000.f, 1.f);
-	//UKismetSystemLibrary::DrawDebugCircle(GetWorld(), Hit.ImpactPoint, 12.f, 12, FLinearColor::Green, 1000.f, 1.f, FVector(1.f, 0.f, 0.f), FVector(0.f, 0.f, 1.f));
-	UKismetSystemLibrary::DrawDebugPoint(GetWorld(), FVector(Hit.ImpactPoint.X, 0.f, Hit.ImpactPoint.Z), 12.f, FLinearColor::Green, 1000.f);
+	UKismetSystemLibrary::DrawDebugLine(GetWorld(), Hit.Location, 200.f * Velocity + Hit.Location, FLinearColor::Green, 16.f);
+	UKismetSystemLibrary::DrawDebugLine(GetWorld(), Hit.Location, 200.f * ReflectedVelocity + Hit.Location, FLinearColor::Yellow, 16.f);
+
+	Velocity = ReflectedVelocity;
 
 }

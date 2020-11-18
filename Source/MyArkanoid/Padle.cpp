@@ -23,6 +23,8 @@ APadle::APadle()
 	if (FoundMaterial.Succeeded())
 		SM_Padle->SetMaterial(0, FoundMaterial.Object);
 
+	SM_Padle->SetCollisionProfileName(TEXT("BlockAllDynamic"));
+
 }
 
 // Called when the game starts or when spawned
